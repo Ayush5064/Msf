@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0B2925">
+<title>Mithila Super Foods — Premium Foxnuts from Darbhanga</title>
+<meta name="description" content="Mithila Super Foods — premium foxnuts rooted in Mithila, crafted for modern snacking.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --ink:#102F2B;
+  --ink-2:#173D37;
+  --cream:#F6F0E4;
+  --paper:#FCFAF5;
+  --lime:#A6C83C;
+  --leaf:#3F7C3A;
+  --saffron:#F28A22;
+  --vermilion:#E54824;
+  --gold:#D7A93A;
+  --muted:#6D7872;
+  --line:rgba(16,47,43,.14);
+  --shadow:0 24px 80px rgba(16,47,43,.12);
+  --radius:28px;
+  --ease:cubic-bezier(.22,.8,.22,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:"DM Sans",system-ui,sans-serif;
+  color:var(--ink);background:var(--paper);
+  overflow-x:hidden;line-height:1.55;
+}
+body.lock{overflow:hidden}
+a{text-decoration:none;color:inherit}
+button,input,textarea{font:inherit}
+button{border:0;background:none;cursor:pointer}
+img{display:block;max-width:100%}
+::selection{background:var(--lime);color:var(--ink)}
+
+.noise{
+  position:fixed;inset:0;pointer-events:none;z-index:100;
+  opacity:.035;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
+}
+.container{width:min(1240px,calc(100% - 48px));margin:auto}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  text-transform:uppercase;letter-spacing:.18em;font-size:11px;font-weight:700;color:var(--leaf)
+}
+.eyebrow::before{content:"";width:28px;height:1px;background:currentColor}
+.display{
+  font-family:"Playfair Display",serif;
+  font-weight:600;letter-spacing:-.045em;line-height:.98;
+}
+.muted{color:var(--muted)}
+.reveal{opacity:0;transform:translateY(35px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.delay-1{transition-delay:.08s}.delay-2{transition-delay:.16s}.delay-3{transition-delay:.24s}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  .reveal{opacity:1;transform:none}
+}
+
+/* NAV */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:80;
+  padding:18px 0;transition:.45s var(--ease);
+}
+.nav.scrolled{background:rgba(252,250,245,.86);backdrop-filter:blur(18px);box-shadow:0 10px 35px rgba(16,47,43,.07);padding:11px 0}
+.nav-inner{display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:12px}
+.brand img{width:43px;height:43px;object-fit:contain}
+.brand span{font-size:13px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+.nav-links{display:flex;align-items:center;gap:30px;font-size:13px;font-weight:600}
+.nav-links a{position:relative;padding:8px 0}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:2px;width:100%;height:2px;background:var(--saffron);transform:scaleX(0);transform-origin:right;transition:.35s var(--ease)}
+.nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1);transform-origin:left}
+.nav-actions{display:flex;align-items:center;gap:10px}
+.icon-btn{
+  width:42px;height:42px;border:1px solid var(--line);border-radius:50%;
+  display:grid;place-items:center;transition:.3s var(--ease)
+}
+.icon-btn:hover{background:var(--ink);color:white;transform:translateY(-2px)}
+.cart-count{font-size:10px;font-weight:800}
+.menu{display:none}
+
+/* HERO */
+.hero{
+  min-height:100svh;padding:120px 0 54px;position:relative;overflow:hidden;
+  background:
+    radial-gradient(circle at 80% 18%,rgba(166,200,60,.18),transparent 28%),
+    radial-gradient(circle at 5% 85%,rgba(242,138,34,.14),transparent 30%),
+    var(--cream);
+}
+.hero::after{
+  content:"";position:absolute;right:-18vw;top:5vh;width:65vw;height:65vw;border:1px solid rgba(16,47,43,.08);border-radius:50%;
+  box-shadow:0 0 0 70px rgba(16,47,43,.015),0 0 0 140px rgba(16,47,43,.012);pointer-events:none;
+}
+.hero-grid{min-height:calc(100svh - 174px);display:grid;grid-template-columns:1.03fr .97fr;align-items:center;gap:35px;position:relative;z-index:2}
+.hero-copy{max-width:690px}
+.hero-kicker{margin-bottom:24px}
+.hero h1{font-size:clamp(62px,8.3vw,126px);max-width:800px}
+.hero h1 em{font-style:normal;color:var(--saffron)}
+.hero-sub{max-width:560px;font-size:18px;color:var(--muted);margin:27px 0 34px}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:12px;
+  padding:14px 20px;border-radius:999px;font-size:13px;font-weight:800;
+  transition:.35s var(--ease);border:1px solid transparent
+}
+.btn-primary{background:var(--ink);color:white}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 15px 35px rgba(16,47,43,.22)}
+.btn-light{border-color:var(--line);background:rgba(255,255,255,.45)}
+.btn-light:hover{border-color:var(--ink);transform:translateY(-3px)}
+.hero-meta{display:flex;gap:28px;margin-top:42px;padding-top:20px;border-top:1px solid var(--line)}
+.meta strong{display:block;font-size:19px}.meta span{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em}
+
+.hero-product{height:670px;position:relative;display:grid;place-items:center}
+.hero-orbit{position:absolute;width:560px;height:560px;border-radius:50%;border:1px solid rgba(16,47,43,.12);animation:spin 28s linear infinite}
+.hero-orbit::before,.hero-orbit::after{content:"";position:absolute;border-radius:50%;background:var(--saffron)}
+.hero-orbit::before{width:12px;height:12px;top:13%;right:7%}
+.hero-orbit::after{width:8px;height:8px;bottom:15%;left:8%;background:var(--lime)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.pack-wrap{position:relative;width:min(430px,80%);animation:float 5s ease-in-out infinite}
+.pack-wrap::before{
+  content:"";position:absolute;inset:8% -8% 0;
+  background:linear-gradient(145deg,rgba(63,124,58,.28),rgba(242,138,34,.12));
+  filter:blur(45px);border-radius:50%;z-index:-1
+}
+.pack{width:100%;filter:drop-shadow(0 35px 25px rgba(0,0,0,.22))}
+@keyframes float{50%{transform:translateY(-15px) rotate(1deg)}}
+.hero-stamp{
+  position:absolute;right:3%;bottom:16%;width:130px;height:130px;border-radius:50%;
+  border:1px solid rgba(16,47,43,.2);background:rgba(252,250,245,.75);backdrop-filter:blur(8px);
+  display:grid;place-items:center;text-align:center;padding:18px;font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;
+}
+.hero-stamp b{font-size:24px;letter-spacing:0}
+.frame-ui{position:absolute;left:0;bottom:0;display:flex;align-items:center;gap:15px}
+.frame-number{font-size:11px;font-weight:800;letter-spacing:.12em}
+.frame-track{width:130px;height:2px;background:rgba(16,47,43,.18);position:relative;overflow:hidden}
+.frame-track span{display:block;width:0;height:100%;background:var(--saffron);animation:progress 5.5s linear infinite}
+@keyframes progress{to{width:100%}}
+.scroll-note{position:absolute;right:0;bottom:0;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);writing-mode:vertical-rl}
+
+/* MARQUEE */
+.marquee{background:var(--ink);color:white;overflow:hidden;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink)}
+.marquee-track{display:flex;width:max-content;animation:marquee 22s linear infinite}
+.marquee-item{display:flex;align-items:center;gap:22px;padding:15px 28px;font-size:11px;letter-spacing:.18em;text-transform:uppercase;white-space:nowrap}
+.marquee-item i{width:6px;height:6px;border-radius:50%;background:var(--saffron)}
+@keyframes marquee{to{transform:translateX(-50%)}}
+
+/* STORY */
+.section{padding:130px 0}
+.story{background:var(--paper)}
+.story-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:90px;align-items:center}
+.story-visual{min-height:610px;position:relative}
+.story-card{
+  position:absolute;background:var(--cream);border-radius:var(--radius);overflow:hidden;
+  box-shadow:var(--shadow)
+}
+.story-card.main{width:75%;height:500px;left:0;top:55px}
+.story-card.main img{width:100%;height:100%;object-fit:contain;background:#050505}
+.story-card.logo-card{width:190px;height:190px;right:0;top:0;background:white;padding:18px;display:grid;place-items:center;transform:rotate(5deg)}
+.story-card.logo-card img{width:100%;height:100%;object-fit:contain}
+.story-card.detail{right:0;bottom:15px;width:210px;padding:22px;background:var(--ink);color:white}
+.story-card.detail strong{font-family:"Playfair Display";font-size:35px;display:block}
+.story-card.detail span{font-size:10px;opacity:.7;text-transform:uppercase;letter-spacing:.12em}
+.story-copy h2{font-size:clamp(45px,5vw,78px);margin:18px 0 24px}
+.story-copy p{font-size:16px;color:var(--muted);max-width:580px}
+.feature-list{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:38px}
+.feature{padding:18px 0;border-top:1px solid var(--line);font-size:13px;font-weight:700}
+.feature span{display:block;color:var(--muted);font-size:11px;font-weight:500;margin-top:4px}
+
+/* PRODUCT SLIDER */
+.products{background:var(--ink);color:white;overflow:hidden}
+.products .eyebrow{color:var(--lime)}
+.products-head{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:45px}
+.products h2{font-size:clamp(46px,6vw,82px);max-width:680px}
+.slider-controls{display:flex;gap:8px}
+.slider-btn{width:48px;height:48px;border:1px solid rgba(255,255,255,.18);border-radius:50%;color:white;display:grid;place-items:center;font-size:20px;transition:.3s}
+.slider-btn:hover{background:white;color:var(--ink)}
+.product-track{
+  display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:20px;
+  scrollbar-width:none;cursor:grab
+}
+.product-track::-webkit-scrollbar{display:none}
+.product-card{
+  flex:0 0 min(390px,78vw);height:560px;scroll-snap-align:start;position:relative;overflow:hidden;border-radius:30px;
+  background:linear-gradient(145deg,#173F39,#0D2925);border:1px solid rgba(255,255,255,.1)
+}
+.product-card::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.7),transparent 50%);pointer-events:none}
+.product-card img{position:absolute;width:100%;height:100%;object-fit:contain;transform:scale(1.12);transition:.7s var(--ease)}
+.product-card:hover img{transform:scale(1.18) rotate(1deg)}
+.product-copy{position:absolute;left:28px;right:28px;bottom:27px;z-index:2}
+.product-tag{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--lime);font-weight:800}
+.product-copy h3{font-family:"Playfair Display";font-size:35px;margin:7px 0}
+.product-copy p{font-size:13px;color:rgba(255,255,255,.68);margin-bottom:17px}
+.price{font-size:14px;font-weight:800}
+.slider-progress{height:2px;background:rgba(255,255,255,.12);margin-top:26px}
+.slider-progress span{display:block;height:100%;background:var(--saffron);width:25%;transition:.45s var(--ease)}
+
+/* VALUES */
+.values{background:var(--cream)}
+.values-head{max-width:780px}
+.values h2{font-size:clamp(48px,6vw,86px);margin:18px 0 20px}
+.value-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);margin-top:65px;border:1px solid var(--line)}
+.value{background:var(--cream);padding:35px 28px;min-height:220px}
+.value-num{font-size:11px;letter-spacing:.15em;color:var(--saffron);font-weight:800}
+.value h3{font-family:"Playfair Display";font-size:27px;margin:40px 0 10px}
+.value p{font-size:12px;color:var(--muted)}
+
+/* HERITAGE BAND */
+.heritage{background:var(--paper);padding:0 0 130px}
+.heritage-inner{
+  min-height:480px;border-radius:var(--radius);background:var(--ink);color:white;position:relative;overflow:hidden;
+  display:grid;grid-template-columns:1.1fr .9fr;align-items:center;padding:70px
+}
+.heritage-inner::before{
+  content:"";position:absolute;width:520px;height:520px;border:1px solid rgba(166,200,60,.25);border-radius:50%;right:-100px;top:-160px
+}
+.heritage h2{font-size:clamp(46px,5vw,76px);max-width:700px}
+.heritage p{max-width:570px;color:rgba(255,255,255,.64);margin:24px 0 30px}
+.mini-logo{width:230px;justify-self:end;opacity:.96;filter:drop-shadow(0 15px 30px rgba(0,0,0,.25))}
+.fssai{display:inline-flex;gap:10px;align-items:center;font-size:11px;color:var(--lime);font-weight:800;text-transform:uppercase;letter-spacing:.1em}
+
+/* NEWSLETTER */
+.newsletter{padding:120px 0;background:linear-gradient(120deg,#F7F0E2,#EFF4E2)}
+.newsletter-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.newsletter h2{font-size:clamp(46px,5vw,74px);margin:18px 0}
+.newsletter p{color:var(--muted);max-width:500px}
+.signup{display:flex;border-bottom:2px solid var(--ink);padding:8px 0;gap:12px}
+.signup input{border:0;outline:0;background:transparent;flex:1;font-size:15px;color:var(--ink)}
+.signup button{font-weight:800;font-size:12px;white-space:nowrap}
+
+/* FOOTER */
+footer{background:var(--ink);color:white;padding:80px 0 25px}
+.footer-top{display:grid;grid-template-columns:1.4fr .7fr .7fr .8fr;gap:40px;padding-bottom:65px}
+.footer-brand img{width:210px;filter:brightness(0) invert(1);opacity:.95}
+.footer-brand p{max-width:350px;color:rgba(255,255,255,.55);font-size:12px;margin-top:20px}
+.footer-col h4{font-size:10px;text-transform:uppercase;letter-spacing:.18em;color:var(--lime);margin-bottom:18px}
+.footer-col a{display:block;font-size:12px;color:rgba(255,255,255,.7);margin:10px 0;transition:.25s}
+.footer-col a:hover{color:white;transform:translateX(3px)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.1);padding-top:20px;display:flex;justify-content:space-between;gap:20px;font-size:10px;color:rgba(255,255,255,.42)}
+
+/* CART DRAWER */
+.drawer-overlay{position:fixed;inset:0;background:rgba(0,0,0,.35);backdrop-filter:blur(5px);z-index:95;opacity:0;pointer-events:none;transition:.4s}
+.drawer{position:fixed;right:0;top:0;bottom:0;width:min(430px,92vw);background:var(--paper);z-index:96;transform:translateX(100%);transition:.5s var(--ease);padding:30px;box-shadow:-30px 0 80px rgba(0,0,0,.18)}
+.drawer.open{transform:none}.drawer-overlay.open{opacity:1;pointer-events:auto}
+.drawer-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:30px}
+.drawer h3{font-family:"Playfair Display";font-size:30px}
+.cart-empty{padding:60px 0;text-align:center;color:var(--muted);font-size:13px}
+.cart-row{display:flex;gap:15px;align-items:center;padding:15px 0;border-bottom:1px solid var(--line)}
+.cart-row img{width:75px;height:85px;object-fit:contain;background:var(--cream);border-radius:12px}
+.cart-row strong{display:block}.cart-row span{font-size:11px;color:var(--muted)}
+.drawer-total{margin-top:25px;padding-top:20px;border-top:1px solid var(--line);display:flex;justify-content:space-between;font-weight:800}
+
+/* MOBILE */
+@media(max-width:900px){
+  .container{width:min(100% - 32px,1240px)}
+  .nav-links{display:none}.menu{display:grid}
+  .hero{padding-top:105px}.hero-grid{grid-template-columns:1fr;min-height:auto}
+  .hero h1{font-size:clamp(58px,15vw,90px)}
+  .hero-product{height:540px}.hero-orbit{width:410px;height:410px}
+  .hero-stamp{right:2%;bottom:8%}
+  .story-grid,.newsletter-inner,.heritage-inner{grid-template-columns:1fr;gap:50px}
+  .story-visual{min-height:520px}
+  .story-card.main{height:420px}
+  .story-card.logo-card{width:150px;height:150px}
+  .story-card.detail{width:180px}
+  .value-grid{grid-template-columns:1fr 1fr}
+  .heritage-inner{padding:50px 35px}
+  .mini-logo{justify-self:start;width:190px}
+  .footer-top{grid-template-columns:1fr 1fr}
+}
+@media(max-width:600px){
+  .section{padding:90px 0}
+  .nav{padding:12px 0}.brand span{display:none}
+  .hero-meta{gap:18px}.meta strong{font-size:16px}
+  .hero-product{height:430px}.hero-orbit{width:300px;height:300px}.pack-wrap{width:72%}.hero-stamp{width:100px;height:100px;font-size:8px}
+  .story-visual{min-height:420px}.story-card.main{height:350px;width:82%}
+  .story-card.logo-card{width:120px;height:120px}.story-card.detail{width:150px;padding:16px;bottom:0}.story-card.detail strong{font-size:27px}
+  .feature-grid,.feature-list{grid-template-columns:1fr}
+  .products-head{align-items:start;flex-direction:column}.product-card{height:500px}
+  .value-grid{grid-template-columns:1fr}.value{min-height:190px}
+  .heritage-inner{min-height:600px}.newsletter-inner{gap:35px}
+  .footer-top{grid-template-columns:1fr 1fr}.footer-bottom{flex-direction:column}
+}
+</style>
+</head>
+
+<body>
+<div class="noise"></div>
+
+<header class="nav" id="nav">
+  <div class="container nav-inner">
+    <a class="brand" href="#home" aria-label="Mithila Super Foods home">
+      <img src="assets/pops-logo.png" alt="Mithila Pops mark">
+      <span>Mithila Super Foods</span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a class="active" href="#home">Home</a>
+      <a href="#story">Our Story</a>
+      <a href="#products">Collections</a>
+      <a href="#values">Why Us</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="icon-btn" id="cartBtn" aria-label="Open cart">🛒<span class="cart-count" id="cartCount">0</span></button>
+      <button class="icon-btn menu" id="menuBtn" aria-label="Open menu">☰</button>
+    </div>
+  </div>
+</header>
+
+<main id="home">
+<section class="hero">
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <div class="eyebrow hero-kicker reveal">Born in Mithila · Crafted in Darbhanga</div>
+      <h1 class="display reveal delay-1">The <em>crunch</em> of Mithila, reimagined.</h1>
+      <p class="hero-sub reveal delay-2">Premium foxnuts rooted in an ancient food culture — thoughtfully made for the way modern India snacks.</p>
+      <div class="hero-cta reveal delay-3">
+        <a class="btn btn-primary" href="#products">Explore the collection <span>↗</span></a>
+        <a class="btn btn-light" href="#story">Discover our story</a>
+      </div>
+      <div class="hero-meta reveal delay-3">
+        <div class="meta"><strong>2025</strong><span>Founded</span></div>
+        <div class="meta"><strong>Darbhanga</strong><span>Mithila, Bihar</span></div>
+        <div class="meta"><strong>100%</strong><span>Natural</span></div>
+      </div>
+    </div>
+
+    <div class="hero-product">
+      <div class="hero-orbit"></div>
+      <div class="pack-wrap" id="heroPack">
+        <img class="pack" src="assets/Untitled-5.png" alt="Mithila Pops Phool Makhana package">
+      </div>
+      <div class="hero-stamp"><div><b>01</b><br>Phool Makhana<br>Lotus Pop Seeds</div></div>
+      <div class="frame-ui"><span class="frame-number">FRAME 01 / 03</span><span class="frame-track"><span></span></span></div>
+      <div class="scroll-note">Scroll to explore ↓</div>
+    </div>
+  </div>
+</section>
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <div class="marquee-item">Premium Foxnuts <i></i> Mithila Heritage <i></i> Roasted with care <i></i> Modern Snacking <i></i></div>
+    <div class="marquee-item">Premium Foxnuts <i></i> Mithila Heritage <i></i> Roasted with care <i></i> Modern Snacking <i></i></div>
+  </div>
+</div>
+
+<section class="section story" id="story">
+  <div class="container story-grid">
+    <div class="story-visual reveal">
+      <div class="story-card main"><img src="assets/Untitled-5.png" alt="Phool Makhana packaging"></div>
+      <div class="story-card logo-card"><img src="assets/mithila-super-foods-logo-white-bg.png" alt="Mithila Super Foods logo"></div>
+      <div class="story-card detail"><strong>847201</strong><span>Darbhanga, Bihar</span></div>
+    </div>
+    <div class="story-copy">
+      <div class="eyebrow reveal">A brand with a place in it</div>
+      <h2 class="display reveal delay-1">From the ponds of Mithila to your pantry.</h2>
+      <p class="reveal delay-2">Mithila Super Foods was founded with a simple mission: preserve the age-old flavours of Mithila and reimagine them for today's health-conscious lifestyle. The brand is built around authenticity, nutrition and respect for local heritage.</p>
+      <p class="reveal delay-2">Every visual detail — from the lotus-inspired mark to the deep green packaging — is designed to feel rooted without feeling old-fashioned.</p>
+      <div class="feature-list reveal delay-3">
+        <div class="feature">01 · Natural & Roasted<span>Simple ingredients, considered preparation.</span></div>
+        <div class="feature">02 · Heritage First<span>Inspired by traditional Mithila food culture.</span></div>
+        <div class="feature">03 · Farmer-First<span>Built around responsible sourcing.</span></div>
+        <div class="feature">04 · Made for Today<span>A premium snacking experience with Indian roots.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section products" id="products">
+  <div class="container">
+    <div class="products-head">
+      <div>
+        <div class="eyebrow reveal">The collection</div>
+        <h2 class="display reveal delay-1">One ingredient.<br>Many moods.</h2>
+      </div>
+      <div class="slider-controls reveal delay-2">
+        <button class="slider-btn" id="prevProduct" aria-label="Previous product">←</button>
+        <button class="slider-btn" id="nextProduct" aria-label="Next product">→</button>
+      </div>
+    </div>
+
+    <div class="product-track" id="productTrack">
+      <article class="product-card">
+        <img src="assets/Untitled-5.png" alt="Raw Foxnuts product">
+        <div class="product-copy">
+          <span class="product-tag">01 · Core collection</span>
+          <h3>Raw Foxnuts</h3>
+          <p>Pure, versatile makhana for roasting, cooking or snacking.</p>
+          <span class="price">₹200 / 200g</span>
+          <button class="btn btn-primary add-cart" data-name="Raw Foxnuts" data-price="200">Add to cart ↗</button>
+        </div>
+      </article>
+      <article class="product-card">
+        <img src="assets/Untitled-5.png" alt="Salted Classic product">
+        <div class="product-copy">
+          <span class="product-tag">02 · Everyday crunch</span>
+          <h3>Salted Classic</h3>
+          <p>Clean, familiar and made for the desk, drive or evening chai.</p>
+          <span class="price">₹240 / 200g</span>
+          <button class="btn btn-primary add-cart" data-name="Salted Classic" data-price="240">Add to cart ↗</button>
+        </div>
+      </article>
+      <article class="product-card">
+        <img src="assets/Untitled-5.png" alt="Masala Crunch product">
+        <div class="product-copy">
+          <span class="product-tag">03 · Bold flavour</span>
+          <h3>Masala Crunch</h3>
+          <p>A punchier take on the classic foxnut snack.</p>
+          <span class="price">₹260 / 200g</span>
+          <button class="btn btn-primary add-cart" data-name="Masala Crunch" data-price="260">Add to cart ↗</button>
+        </div>
+      </article>
+      <article class="product-card">
+        <img src="assets/Untitled-5.png" alt="Chatpata Zest product">
+        <div class="product-copy">
+          <span class="product-tag">04 · Tangy finish</span>
+          <h3>Chatpata Zest</h3>
+          <p>Bright, tangy and built for a little extra personality.</p>
+          <span class="price">₹280 / 200g</span>
+          <button class="btn btn-primary add-cart" data-name="Chatpata Zest" data-price="280">Add to cart ↗</button>
+        </div>
+      </article>
+    </div>
+    <div class="slider-progress"><span id="sliderProgress"></span></div>
+  </div>
+</section>
+
+<section class="section values" id="values">
+  <div class="container">
+    <div class="values-head">
+      <div class="eyebrow reveal">Why Mithila Super Foods</div>
+      <h2 class="display reveal delay-1">Heritage is the ingredient you can't manufacture.</h2>
+      <p class="muted reveal delay-2">The supplied brand story centres on natural preparation, Mithila recipes, farmer-first sourcing and food-safety compliance.</p>
+    </div>
+    <div class="value-grid">
+      <article class="value reveal"><span class="value-num">01</span><h3>FSSAI Certified</h3><p>License: 10425999000192 — retained from the supplied website content.</p></article>
+      <article class="value reveal delay-1"><span class="value-num">02</span><h3>100% Natural</h3><p>No maida, preservatives or artificial colours — according to the supplied brand copy.</p></article>
+      <article class="value reveal delay-2"><span class="value-num">03</span><h3>Heritage Protected</h3><p>Traditional Mithila recipes and cultural cues remain central to the brand narrative.</p></article>
+      <article class="value reveal delay-3"><span class="value-num">04</span><h3>Freshness</h3><p>The original page states weekly roasting and shipping within 48 hours.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="heritage">
+  <div class="container">
+    <div class="heritage-inner reveal">
+      <div>
+        <div class="eyebrow" style="color:var(--lime)">The visual identity</div>
+        <h2 class="display">Ancient cues. Contemporary shelf appeal.</h2>
+        <p>We use the supplied Mithila Pops mark as the expressive product identity and the Mithila Super Foods wordmark as the parent brand signature — creating a system that can scale from packaging to e-commerce.</p>
+        <div class="fssai">✦ FSSAI · 10425999000192</div>
+      </div>
+      <img class="mini-logo" src="assets/pops-logo.png" alt="Mithila Pops logo">
+    </div>
+  </div>
+</section>
+
+<section class="newsletter" id="contact">
+  <div class="container newsletter-inner">
+    <div>
+      <div class="eyebrow">Join the Mithila Circle</div>
+      <h2 class="display">Good things are worth popping into your inbox.</h2>
+      <p>The original site offered 15% off the first order, plus recipes, farmer stories and early-access drops. Keep that mechanism, but give it a much more premium finish.</p>
+    </div>
+    <form class="signup" id="signup">
+      <input type="email" placeholder="Your email address" aria-label="Your email address" required>
+      <button type="submit">JOIN THE CIRCLE ↗</button>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="assets/mithila-super-foods-logo-white-bg.png" alt="Mithila Super Foods">
+        <p>Preserving tradition, nourishing futures. Premium foxnuts from Darbhanga, Bihar.</p>
+      </div>
+      <div class="footer-col"><h4>Explore</h4><a href="#home">Home</a><a href="#story">Our Story</a><a href="#products">Collections</a><a href="#values">Why Us</a></div>
+      <div class="footer-col"><h4>Business</h4><a href="#contact">Wholesale</a><a href="#contact">Contact</a><a href="#contact">Careers</a><a href="#contact">FAQ</a></div>
+      <div class="footer-col"><h4>Find us</h4><a href="#contact">Darbhanga, Bihar</a><a href="mailto:hello@mithilasuperfoods.in">Email us ↗</a></div>
+    </div>
+    <div class="footer-bottom"><span>© 2025 Mithila Super Foods Private Limited. All rights reserved.</span><span>FSSAI: 10425999000192</span></div>
+  </div>
+</footer>
+
+<div class="drawer-overlay" id="drawerOverlay"></div>
+<aside class="drawer" id="drawer" aria-label="Shopping cart">
+  <div class="drawer-head"><h3>Your basket</h3><button class="icon-btn" id="closeCart" aria-label="Close cart">×</button></div>
+  <div id="cartItems"><div class="cart-empty">Your basket is waiting for a little crunch.</div></div>
+  <div class="drawer-total"><span>Total</span><span id="cartTotal">₹0</span></div>
+</aside>
+
+<script>
+const nav=document.getElementById('nav');
+const reveals=document.querySelectorAll('.reveal');
+const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');observer.unobserve(e.target)}});
+},{threshold:.12});
+if(!reduce) reveals.forEach(el=>observer.observe(el)); else reveals.forEach(el=>el.classList.add('in'));
+
+window.addEventListener('scroll',()=>{
+  nav.classList.toggle('scrolled',window.scrollY>40);
+  const links=[...document.querySelectorAll('.nav-links a')];
+  let current='';
+  document.querySelectorAll('main section[id]').forEach(s=>{
+    if(window.scrollY >= s.offsetTop-180) current=s.id;
+  });
+  links.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+current));
+},{passive:true});
+
+/* mobile menu */
+const menuBtn=document.getElementById('menuBtn');
+menuBtn?.addEventListener('click',()=>{
+  const panel=document.createElement('div');
+  panel.className='mobile-panel';
+  panel.innerHTML='<button class="icon-btn close-mobile">×</button><a href="#home">Home</a><a href="#story">Our Story</a><a href="#products">Collections</a><a href="#values">Why Us</a><a href="#contact">Contact</a>';
+  Object.assign(panel.style,{position:'fixed',inset:'0',zIndex:'94',background:'#FCFAF5',display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center',gap:'28px',fontSize:'26px',fontFamily:'Playfair Display'});
+  document.body.appendChild(panel);document.body.classList.add('lock');
+  panel.querySelectorAll('a').forEach(a=>a.onclick=()=>{panel.remove();document.body.classList.remove('lock')});
+  panel.querySelector('.close-mobile').onclick=()=>{panel.remove();document.body.classList.remove('lock')};
+});
+
+/* product slider */
+const track=document.getElementById('productTrack');
+const cards=[...track.querySelectorAll('.product-card')];
+const scrollProduct=dir=>track.scrollBy({left:dir*(cards[0].getBoundingClientRect().width+18),behavior:'smooth'});
+document.getElementById('prevProduct').onclick=()=>scrollProduct(-1);
+document.getElementById('nextProduct').onclick=()=>scrollProduct(1);
+const progress=document.getElementById('sliderProgress');
+track.addEventListener('scroll',()=>{
+  const max=track.scrollWidth-track.clientWidth;
+  progress.style.width=max?`${Math.min(100,(track.scrollLeft/max)*75+25)}%`:'25%';
+},{passive:true});
+
+/* cart */
+let cart=[];
+const drawer=document.getElementById('drawer'),overlay=document.getElementById('drawerOverlay');
+const openCart=()=>{drawer.classList.add('open');overlay.classList.add('open');document.body.classList.add('lock')};
+const closeCart=()=>{drawer.classList.remove('open');overlay.classList.remove('open');document.body.classList.remove('lock')};
+document.getElementById('cartBtn').onclick=openCart;
+document.getElementById('closeCart').onclick=closeCart;
+overlay.onclick=closeCart;
+
+function renderCart(){
+  const box=document.getElementById('cartItems'), count=document.getElementById('cartCount'), total=document.getElementById('cartTotal');
+  count.textContent=cart.length;
+  if(!cart.length){box.innerHTML='<div class="cart-empty">Your basket is waiting for a little crunch.</div>';total.textContent='₹0';return}
+  box.innerHTML=cart.map((p,i)=>`<div class="cart-row"><img src="assets/Untitled-5.png" alt=""><div><strong>${p.name}</strong><span>₹${p.price} · 200g</span></div><button onclick="removeCart(${i})" style="margin-left:auto;font-size:20px">×</button></div>`).join('');
+  total.textContent='₹'+cart.reduce((s,p)=>s+p.price,0);
+}
+window.removeCart=i=>{cart.splice(i,1);renderCart()};
+
+document.querySelectorAll('.add-cart').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    cart.push({name:btn.dataset.name,price:Number(btn.dataset.price)});
+    renderCart();openCart();
+    btn.animate([{transform:'scale(.95)'},{transform:'scale(1)'}],{duration:240,easing:'ease-out'});
+  });
+});
+
+/* newsletter */
+document.getElementById('signup').addEventListener('submit',e=>{
+  e.preventDefault();
+  const button=e.currentTarget.querySelector('button');
+  button.textContent='YOU’RE IN ✓';
+  button.style.color='#3F7C3A';
+});
+
+/* tiny hero parallax */
+if(!reduce){
+  window.addEventListener('pointermove',e=>{
+    const x=(e.clientX/window.innerWidth-.5)*10, y=(e.clientY/window.innerHeight-.5)*8;
+    const pack=document.getElementById('heroPack');
+    pack.style.transform=`translate(${x*.35}px,${y*.35}px)`;
+  },{passive:true});
+}
+</script>
+</body>
+</html>
